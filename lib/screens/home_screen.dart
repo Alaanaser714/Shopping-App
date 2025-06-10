@@ -1,55 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../data/products_list.dart';
+import '../show_success_dialog.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  void showAddedToCart(BuildContext context) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text("Item added to the cart")));
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final PageController _pageController = PageController(viewportFraction: 0.8);
+  int currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      int next = _pageController.page!.round();
+      if (currentPage != next) {
+        setState(() => currentPage = next);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Our Products',
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xff686ED3),
+        backgroundColor: const Color(0xff686ED3),
+        leading: SizedBox(),
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 20),
+
             SizedBox(
               height: 200,
-              child: PageView(
-                controller: PageController(viewportFraction: 0.8),
-                children: List.generate(5, (index) {
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: products.length,
+                itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.network(
-                        'https://via.placeholder.com/300x200?text=Featured+${index + 1}',
+                      child: Image.asset(
+                        products[index]["image"],
                         fit: BoxFit.cover,
                       ),
                     ),
                   );
-                }),
+                },
               ),
             ),
-            const SizedBox(height: 16),
+
+            const SizedBox(height: 12),
+
+            SmoothPageIndicator(
+              controller: _pageController,
+              count: products.length,
+              effect: const ExpandingDotsEffect(
+                activeDotColor: Color(0xff686ED3),
+                dotHeight: 10,
+                dotWidth: 10,
+              ),
+            ),
+
+            const SizedBox(height: 24),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 6,
+                itemCount: products.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 12,
@@ -57,6 +96,7 @@ class HomeScreen extends StatelessWidget {
                   childAspectRatio: 3 / 4,
                 ),
                 itemBuilder: (context, index) {
+                  final product = products[index];
                   return Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
@@ -65,18 +105,25 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Expanded(
-                          child: Image.network(
-                            'https://via.placeholder.com/150?text=Product+${index + 1}',
+                          child: Image.asset(
+                            product["image"],
                             fit: BoxFit.cover,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('Product ${index + 1}'),
+                        const SizedBox(height: 8),
+                        Text(
+                          product["name"],
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          product["price"],
+                          style: TextStyle(color: Colors.grey[700]),
                         ),
                         IconButton(
                           icon: const Icon(Icons.add_shopping_cart),
-                          onPressed: () => showAddedToCart(context),
+                          onPressed: () =>
+                              showAddedToCart(context, product["name"]),
                         ),
                       ],
                     ),
@@ -112,16 +159,44 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Image.network(
-                        'https://via.placeholder.com/80?text=Offer+${index + 1}',
-                        width: 80,
-                        height: 80,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Hot Offer ${index + 1}',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'Get 20% off on your next purchase from selected items.',
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey[700],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          'Hot Offer ${index + 1}: Get 20% off on your next purchase!',
-                          style: const TextStyle(fontSize: 14),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade100,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          '50% OFF',
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],

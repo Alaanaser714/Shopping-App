@@ -38,3 +38,26 @@ showSuccessDaialog(BuildContext context, String text) {
     ),
   );
 }
+
+void showAddedToCart(BuildContext context, String productName) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Row(
+        children: [
+          const Icon(Icons.check_circle, color: Colors.white),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              '$productName added to the cart!',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
+      backgroundColor: const Color(0xff686ED3),
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      duration: const Duration(seconds: 2),
+    ),
+  );
+}
