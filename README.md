@@ -1,16 +1,15 @@
-# shopping_app
+# 🛍️ Flutter Shopping App
 
-A new Flutter project.
+A complete shopping application built with **Flutter** and **Dart**, designed to simulate real-world e-commerce features including user authentication, product display, cart management, and Arabic localization.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 Features
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 👋 Beautiful Welcome Screen with custom fonts and images  
+- 🔐 User Authentication (Sign Up & Sign In) with validation  
+- 🧭 Smooth animated navigation transitions  
+- 🛒 Product grid and carousel with cart interaction  
+- 🎁 Hot Offers section with ListView.builder  
+- 🌐 Arabic Language Support using `.arb` files (via Flutter Intl)  
+- ✅ Formatted, modular codebase with clean architecture
