@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/show_success_dialog.dart';
 
@@ -27,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Sign In',
+          tr('sign_in').tr(),
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
         centerTitle: true,
@@ -42,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Welcome Back",
+                  tr('welcome_back').tr(),
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -51,21 +52,21 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  "Sign in to ShopCraft",
+                  tr('sign_in_to_shopcraft').tr(),
                   style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                 ),
                 const SizedBox(height: 24),
                 CustomTextField(
-                  label: "Email",
-                  hint: "Enter your email",
+                  label: tr('email').tr(),
+                  hint: tr('enter_email').tr(),
                   icon: Icons.email,
                   controller: emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Please enter your email";
+                      return tr("please_enter_email").tr();
                     }
                     if (!value.contains("@")) {
-                      return "Email must contain '@'";
+                      return tr('email_format').tr();
                     }
                     return null;
                   },
@@ -73,14 +74,14 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(height: 16),
 
                 CustomTextField(
-                  label: "Password",
-                  hint: "Enter your password",
+                  label: tr('password').tr(),
+                  hint: tr('enter_password').tr(),
                   icon: Icons.lock,
                   controller: passwordController,
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.length < 6) {
-                      return "Password must be at least 6 characters";
+                      return tr("password_length").tr();
                     }
                     return null;
                   },
@@ -89,10 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 GestureDetector(
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      showSuccessDaialog(
-                        context,
-                        "Account successfully signed in!",
-                      );
+                      showSuccessDaialog(context, tr('signed_in').tr());
                     }
                   },
                   child: Container(
@@ -105,8 +103,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     alignment: Alignment.center,
-                    child: const Text(
-                      "Sign In",
+                    child: Text(
+                      tr('sign_in').tr(),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

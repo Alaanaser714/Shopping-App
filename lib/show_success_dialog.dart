@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/screens/home_screen.dart';
 
@@ -5,7 +6,7 @@ showSuccessDaialog(BuildContext context, String text) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: const Text("Success"),
+      title: Text(tr('success').tr()),
       content: Text(text),
       actions: [
         TextButton(
@@ -25,8 +26,8 @@ showSuccessDaialog(BuildContext context, String text) {
               ),
             );
           },
-          child: const Text(
-            "Close",
+          child: Text(
+            tr('close').tr(),
             style: TextStyle(
               color: Colors.green,
               fontWeight: FontWeight.bold,
@@ -48,7 +49,7 @@ void showAddedToCart(BuildContext context, String productName) {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              '$productName added to the cart!',
+              '$productName ${tr('added_to_cart').tr()}',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),

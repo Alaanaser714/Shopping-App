@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -36,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Our Products',
+        title: Text(
+          tr("products").tr(),
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
         centerTitle: true,
@@ -133,10 +134,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             const SizedBox(height: 24),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.0),
               child: Text(
-                "Hot Offers",
+                tr("hot_offers").tr(),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -164,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Hot Offer ${index + 1}',
+                              "${tr("hot_offer").tr()} ${index + 1}",
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -172,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'Get 20% off on your next purchase from selected items.',
+                              tr("hot_offers_desc").tr(),
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey[700],

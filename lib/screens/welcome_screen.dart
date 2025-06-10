@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/screens/sign_in_screen.dart';
 import 'package:shopping_app/screens/sign_up_screen.dart';
@@ -20,8 +21,8 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 20),
-            const Text(
-              'Your Premium Shopping Experience',
+            Text(
+              tr('hello_message').tr(),
               style: TextStyle(fontSize: 24),
               textAlign: TextAlign.center,
             ),
@@ -53,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: Color(0xff686ED3),
                     ),
                   ),
-                  child: const Text('Sign In'),
+                  child: Text(tr('sign_in').tr()),
                 ),
                 const SizedBox(width: 20),
                 ElevatedButton(
@@ -76,9 +77,25 @@ class WelcomeScreen extends StatelessWidget {
                       color: Color(0xff686ED3),
                     ),
                   ),
-                  child: const Text('Sign Up'),
+                  child: Text(tr('sign_up').tr()),
                 ),
               ],
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                final currentLocale = context.locale;
+                if (currentLocale == const Locale('en', 'US')) {
+                  context.setLocale(const Locale('ar', 'EG'));
+                } else {
+                  context.setLocale(const Locale('en', 'US'));
+                }
+              },
+              child: Text(
+                context.locale == const Locale('en', 'US')
+                    ? 'العربية'
+                    : 'English',
+              ),
             ),
           ],
         ),

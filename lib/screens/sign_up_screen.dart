@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/show_success_dialog.dart';
 import '../widgets/custom_text_field.dart';
@@ -20,8 +21,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Sign Up',
+        title: Text(
+          tr('sign_up').tr(),
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
         centerTitle: true,
@@ -35,8 +36,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 16),
-                const Text(
-                  "Create Your Account",
+                Text(
+                  tr('create_account').tr(),
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -45,22 +46,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Join ShopCraft today",
+                  tr('join').tr(),
                   style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                 ),
                 const SizedBox(height: 24),
 
                 CustomTextField(
-                  label: "Full Name",
-                  hint: "Enter your full name",
+                  label: tr('full_name').tr(),
+                  hint: tr('enter_full_name').tr(),
                   icon: Icons.person,
                   controller: nameController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Please enter your full name";
+                      return tr("please_enter_full_name").tr();
                     }
                     if (!RegExp(r'^[A-Z]').hasMatch(value.trim())) {
-                      return "First letter must be uppercase";
+                      return tr("first_letter").tr();
                     }
                     return null;
                   },
@@ -68,16 +69,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(height: 12),
 
                 CustomTextField(
-                  label: "Email",
-                  hint: "Enter your email",
+                  label: tr('email').tr(),
+                  hint: tr('enter_email').tr(
+
+                  ),
                   icon: Icons.email,
                   controller: emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Please enter your email";
+                      return tr("please_enter_email").tr();
                     }
                     if (!value.contains("@")) {
-                      return "Email must contain '@'";
+                      return tr("email_format").tr();
                     }
                     return null;
                   },
@@ -85,14 +88,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(height: 12),
 
                 CustomTextField(
-                  label: "Password",
-                  hint: "Enter your password",
+                  label: tr('password').tr(),
+                  hint: tr('enter_password').tr(),
                   icon: Icons.lock,
                   controller: passwordController,
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.length < 6) {
-                      return "Password must be at least 6 characters";
+                      return tr("password_length").tr();
                     }
                     return null;
                   },
@@ -100,14 +103,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(height: 12),
 
                 CustomTextField(
-                  label: "Confirm Password",
-                  hint: "Re-enter your password",
+                  label: tr('confirm_password').tr(),
+                  hint: tr('confirm_password_hint').tr(),
                   icon: Icons.lock,
                   controller: confirmPasswordController,
                   obscureText: true,
                   validator: (value) {
                     if (value != passwordController.text) {
-                      return "Passwords do not match";
+                      return tr("passwords_mismatch").tr();
                     }
                     return null;
                   },
@@ -117,10 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 GestureDetector(
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      showSuccessDaialog(
-                        context,
-                        "Account created successfully!",
-                      );
+                      showSuccessDaialog(context, tr('account_created').tr());
                     }
                   },
                   child: Container(
@@ -133,8 +133,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     alignment: Alignment.center,
-                    child: const Text(
-                      "Create Account",
+                    child: Text(
+                      tr('create_account').tr(),
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,

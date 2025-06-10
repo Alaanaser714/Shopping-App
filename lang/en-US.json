@@ -1,0 +1,36 @@
+{
+  "hello_message": "Your Premium Shopping Experience",
+  "sign_in": "Sign In",
+  "sign_up": "Sign Up",
+  "create_your_account":"Create Your Account"
+    ,"join":"Join ShopCraft today"
+    ,"full_name":"Full Name"
+    ,"enter_full_name":"Enter your full name"
+    ,"please_enter_full_name":"Please enter your full name"
+    ,"first_letter":"First letter must be uppercase"
+    ,"email":"Email"
+    ,"enter_email":"Enter your email address"
+    ,"please_enter_email":"Please enter your email address"
+    ,"email_format":"Email must contain '@'"
+    ,"password":"Password"
+    ,"enter_password":"Enter your password"
+    ,"please_enter_password":"Please enter your password"
+    ,"password_length":"Password must be at least 6 characters long"
+    ,"confirm_password":"Confirm Password"
+    ,"enter_confirm_password":"Re-enter your password"
+    ,"please_confirm_password":"Please confirm your password"
+    ,"passwords_mismatch":"Passwords do not match"
+    ,"account_created":"Account created successfully!"
+    ,"create_account":"Create Account"
+    ,"welcome":"Welcome Back"
+    ,"welcome_back":"Welcome back to ShopCraft"
+    ,"signed_in":"Account successfully signed in!"
+    ,"products":"Our Products"
+    ,"hot_offers":"Hot Offers"
+    ,"hot_offers_desc":"Get 20% off on your next purchase from selected items."
+    ,"sign_in_to_shopcraft":"Sign in to ShopCraft"
+    ,"success":"Success"
+    ,"close":"Close"
+    ,"add_to_cart":"added to the cart!"
+
+}
